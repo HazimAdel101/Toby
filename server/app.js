@@ -1,27 +1,28 @@
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import userRoutes from './routes/user.js';
-import authRoutes from './routes/auth.js';
-import passportSetup from './config/passportSetup.js'
+import passportSetup from './config/passportSetup.js';
 
 const app = express();
+app.use(express.json());
 
 // Middleware
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         secure: false, // HTTP or HTTPS
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
-}))
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.session());
 app.use(passport.initialize());
+app.use(passport.session());
+
+app.serialize
 // Routes
 
 app.get('/', (req, res) => {
@@ -33,9 +34,6 @@ app.get('/', (req, res) => {
     } else {
         res.send(`name ${name}`);
     }
-})
-
-app.use('/users', userRoutes);
-app.use('/auth', authRoutes);
+});
 
 export default app;

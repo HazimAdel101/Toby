@@ -1,14 +1,19 @@
-import { Router } from 'express';
+import express from 'express';
+import db from '../models/index.js';  // Make sure the path is correct
 
-const router = Router();
-// logout 
-router.get('/logout', (req, res) => {
-    res.send('logout successfully')
-} )
+const router = express.Router();
+const { User } = db;
 
-// auth with google
-router.get('/google', (req, res) => {
-    res.send('Hello, world!');
-})
+router.get('/create', async (req, res) => {
+    try {
+        const user = await User.create({
+            firstName: "Hazim",
+            age: 20
+        });
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 export default router;

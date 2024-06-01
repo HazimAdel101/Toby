@@ -8,7 +8,7 @@ passport.serializeUser(function (user, cb) {
 
 passport.deserializeUser(function (id, cb) {
     cb(null, id);
-})
+});
 
 passport.use(new GitHubStrategy({
     clientID: keys.github.clientID,
@@ -19,7 +19,8 @@ passport.use(new GitHubStrategy({
         console.log(profile);
         cb(null, profile);
     } catch (err) {
-        console.log(err);;
+        console.log(err);
+        cb(err);
     }
 }));
 
