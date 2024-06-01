@@ -1,9 +1,9 @@
-import app from './app.js';
-import db from './models/index.js';  // Make sure the path is correct
-import userRoutes from './routes/user.js';  // Make sure the path is correct
-import authRoutes from './routes/auth.js';
+const app = require('./app.js');
+const db = require('./models/index.js');  // Make sure the path is correct
+const userRoutes = require('./routes/user.js');  // Make sure the path is correct
+const authRoutes = require('./routes/auth.js');
 
-
+// Routes
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 const PORT = process.env.PORT || 3000;

@@ -1,7 +1,7 @@
-import express from 'express';
-import session from 'express-session';
-import passport from 'passport';
-import passportSetup from './config/passportSetup.js';
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const passportSetup = require('./config/passportSetup.js');
 
 const app = express();
 app.use(express.json());
@@ -22,9 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.serialize
 // Routes
-
 app.get('/', (req, res) => {
     console.log(req.user);
     var name = "hazim";
@@ -36,4 +34,4 @@ app.get('/', (req, res) => {
     }
 });
 
-export default app;
+module.exports = app;
