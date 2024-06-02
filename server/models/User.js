@@ -33,12 +33,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     githubId: {
       type: DataTypes.STRING,
-      unique: true
+      // unique: true
   },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      // unique: true,
       validate: {
         notNull: {
           msg: 'Email cannot be null.'

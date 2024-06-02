@@ -1,12 +1,37 @@
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const passportSetup = require('./config/passportSetup.js');
+const expressLoyouts = require('express-ejs-layouts');
 
 const app = express();
 app.use(express.json());
 
+
+// static files
+
+app.use(express.static('public'));
+app.use('/css', express.static(__dirname + 'public/css'));
+app.use('/js', express.static(__dirname + 'public/css'));
+app.use('/images', express.static(__dirname + 'public/images'));
+app.use('/uploads', express.static(__dirname + 'public/uploads'));
+
+
+app.set('view engine', 'ejs');
+
+
 // Middleware
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         httpOnly: true,
+//         secure: false, // HTTP or HTTPS
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+// }));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -21,17 +46,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(expressLoyouts);
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Routes
-app.get('/', (req, res) => {
-    console.log(req.user);
-    var name = "hazim";
-    var name = req.user;
-    if (!name) {
-        res.send('User not found');
-    } else {
-        res.send(`name ${name}`);
-    }
-});
 
 module.exports = app;
