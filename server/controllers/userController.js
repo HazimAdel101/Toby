@@ -5,19 +5,6 @@ const { User } = db;
 
 const UserController = {
     async createUser(profile) {
-        // try {
-        //     const user = await User.create({
-        //         firstName: "Hazim",
-        //         lastName: "Al-saqqaf",
-        //         githubId: 'udsjuu3y32yu2yu2u',
-        //         email: 'alsaqqafhazim2002@gmail.com',
-        //         password: '123456',
-        //     });
-        //     res.status(201).json(user);
-        // } catch (error) {
-        //     res.status(500).json({ error: error.message });
-        // }
-
         try {
             let user = await User.findOne({ where: { githubId: profile.id } });
 
