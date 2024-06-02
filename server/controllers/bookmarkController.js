@@ -1,4 +1,3 @@
-// controllers/bookmarkController.js
 const { Bookmark, Collection } = require('../models');
 
 const BookmarkController = {

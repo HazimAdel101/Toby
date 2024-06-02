@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
+    "username": "postgres",
     "database": "toby",
     "host": "localhost",
-    "dialect": "mysql"
+    "port": 5432,
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",

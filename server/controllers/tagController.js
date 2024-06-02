@@ -1,4 +1,3 @@
-// controllers/tagController.js
 const { Tag, Collection } = require('../models');
 
 const TagController = {

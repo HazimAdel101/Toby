@@ -1,11 +1,9 @@
 const bcrypt = require('bcrypt'); // Use bcrypt for password hashing
 const db = require('../models/index.js');
 const Passport = require('../config/passportSetup.js');
-
 const { User } = db;
 
 const UserController = {
-
     async createUser(profile) {
         console.log('Profile received:', profile);
         try {
@@ -34,12 +32,12 @@ const UserController = {
             throw new Error(`Failed to create user: ${error.message}`);
         }
     },
-    async  createUserForm({ firstName, lastName, email, password }) {
+    async createUserForm({ firstName, lastName, email, password }) {
         console.log('Data received:', { firstName, lastName, email, password });
         try {
             let user = await User.findOne({ where: { email } });
             console.log('User found:', user);
-    
+
             if (!user) {
                 const hashedPassword = await bcrypt.hash(password || '123456', 10); // Hash the password
                 user = await User.create({
@@ -55,27 +53,6 @@ const UserController = {
             throw error;
         }
     },
-    // async createUserForm ({ firstName, lastName, email, password }) {
-    //     console.log('Data received:', { firstName, lastName, email, password });
-    //     try {
-    //         let user = await User.findOne({ where: { email } });
-    //         console.log('User found:', user);
-    
-    //         if (!user) {
-    //             const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
-    //             user = await User.create({
-    //                 firstName,
-    //                 lastName,
-    //                 email,
-    //                 password: hashedPassword, // Store the hashed password
-    //             });
-    //             console.log('User created:', user);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error creating user:', error);
-    //         throw error;
-    //     }
-    // },
     async getUser(req, res) {
         try {
             const userId = req.params.id;
@@ -147,26 +124,6 @@ const UserController = {
             res.status(400).json({ error: error.message });
         }
     },
-
-    // async loginUser(email, password) {
-    //     try {
-    //         const user = await User.findOne({ where: { email } });
-    //         if (!user) {
-    //             throw new Error('User not found');
-    //         }
-
-    //         // You should use a proper password hashing library like bcrypt for security
-    //         if (user.password !== password) {
-    //             throw new Error('Incorrect password');
-    //         }
-
-    //         return user;
-    //     } catch (error) {
-    //         console.error('Error logging in:', error);
-    //         throw error;
-    //     }
-    // },
-
     async loginUser(email, password) {
         try {
             const user = await User.findOne({ where: { email } });

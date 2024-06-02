@@ -1,0 +1,171 @@
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+        
+    </style>
+    <div class="bg-slate-300  flex items-center justify-center">
+    <section class="w-[80%] mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-4xl font-bold text-center mb-8 fade-in">Toby Page</h1>
+
+        <div class="space-y-12">
+            <!-- Collection 1 -->
+            <div>
+                <button class="text-2xl font-semibold text-left mb-4 w-full flex items-center justify-start fade-in" onclick="toggleCollection('collection1', this)">
+                    <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
+                        <img src="/images/arrow.png" class="w-4 h-4 ease-in-out duration-300 transform rotate-90" alt="arrow" id="arrowIcon1">
+                    </span> <!-- Arrow icon -->
+                    Collection 1
+                </button>
+                <div id="collection1" class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark1
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark2
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark3
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark4
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark5
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark6
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-blue-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark7
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection 2 -->
+            <div>
+                <button class="text-2xl font-semibold text-left mb-4 w-full flex items-center justify-start fade-in" onclick="toggleCollection('collection2', this)">
+                    <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
+                        <img src="/images/arrow.png" class="w-4 h-4 ease-in-out duration-300 transform rotate-90" alt="arrow" id="arrowIcon2">
+                    </span> <!-- Arrow icon -->
+                    Collection 2
+                </button>
+                <div id="collection2" class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark1
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark2
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark3
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark4
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark5
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark6
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-red-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark7
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection 3 -->
+            <div>
+                <button class="text-2xl font-semibold text-left mb-4 w-full flex items-center justify-start fade-in" onclick="toggleCollection('collection3', this)">
+                    <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
+                        <img src="/images/arrow.png" class="w-4 h-4 ease-in-out duration-300 transform rotate-90" alt="arrow" id="arrowIcon3">
+                    </span> <!-- Arrow icon -->
+                    Collection 3
+                </button>
+                <div id="collection3" class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark1
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark2
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark3
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark4
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark5
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark6
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-green-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark7
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection 4 -->
+            <div>
+                <button class="text-2xl font-semibold text-left mb-4 w-full flex items-center justify-start fade-in" onclick="toggleCollection('collection4', this)">
+                    <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
+                        <img src="/images/arrow.png" class="w-4 h-4 ease-in-out duration-300 transform rotate-90" alt="arrow" id="arrowIcon4">
+                    </span> <!-- Arrow icon -->
+                    Collection 4
+                </button>
+                <div id="collection4" class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark1
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark2
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark3
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark4
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark5
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark6
+                    </div>
+                    <div class="col-span-6 md:col-span-4 lg:col-span-3 bg-yellow-100 p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        bookmark7
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    function toggleCollection(collectionId, button) {
+        var collection = document.getElementById(collectionId);
+        var arrowIcon = button.querySelector('img');
+        
+        if (collection.classList.contains('hidden')) {
+            collection.classList.remove('hidden');
+            arrowIcon.classList.add('rotate-90');
+        } else {
+            collection.classList.add('hidden');
+            arrowIcon.classList.remove('rotate-90');
+        }
+    }
+    
+    
+    
+</script>

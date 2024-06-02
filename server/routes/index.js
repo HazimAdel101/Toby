@@ -1,5 +1,7 @@
 const express = require('express');
 const UserController = require('../controllers/userController');
+const CollectionController = require('../controllers/collectionController');
+const RenderController = require('../controllers/renderController');
 const {isAuth} = require('../middleware/auth');
 
 const router = express.Router();
@@ -34,19 +36,6 @@ router.get('/login', (req, res) => {
     }
 });
 
-// router.post('/login', async (req, res) => {
-//     const { email, password } = req.body;
-
-//     try {
-//         const user = await UserController.loginUser(email, password);
-//         res.redirect('/dashboard'); // Redirect to dashboard or home page
-//     } catch (error) {
-//         console.error('Login failed:', error);
-//         res.redirect('/login'); // Redirect back to login page on failure
-//     }
-// });
-
-
 router.post('/login', async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -57,12 +46,15 @@ router.post('/login', async (req, res, next) => {
                 console.error('Login failed:', err);
                 return next(err);
             }
-            return res.redirect('/dashboard'); // Redirect to dashboard or home page
+            return res.redirect('/toby');
         });
     } catch (error) {
         console.error('Login failed:', error);
-        return res.redirect('/login'); // Redirect back to login page on failure
+        return res.redirect('/login'); 
     }
 });
+router.get('/toby', isAuth, RenderController.renderMainPage);
+
+// router.get('/toby', isAuth, CollectionController.getUserCollections);
 
 module.exports = router;
