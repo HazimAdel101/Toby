@@ -53,8 +53,10 @@ router.post('/login', async (req, res, next) => {
         return res.redirect('/login'); 
     }
 });
+
+// render main page
 router.get('/toby', isAuth, RenderController.renderMainPage);
 
-// router.get('/toby', isAuth, CollectionController.getUserCollections);
+router.get('/toby', isAuth, CollectionController.getUserCollections);
 
 module.exports = router;
