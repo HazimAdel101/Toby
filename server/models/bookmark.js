@@ -8,14 +8,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isUrl: true
+                isUrl: {
+                    msg: 'Must be a valid URL',
+                    args: true,                }
             }
         },
         icon: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
-                isUrl: true
             }
         },
         collectionId: {

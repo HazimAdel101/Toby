@@ -3,15 +3,21 @@ const { Bookmark, Collection } = require('../models');
 const BookmarkController = {
     async createBookmark(req, res) {
         try {
-            const { collectionId, name, url, icon } = req.body;
-            const collection = await Collection.findByPk(collectionId);
-            if (!collection) {
-                return res.status(404).json({ error: 'Collection not found' });
-            }
-            const bookmark = await Bookmark.create({ name, url, icon, collectionId });
-            res.status(201).json(bookmark);
+            const { name, url, collectionId } = req.body;
+            const icon = req.file ? req.file.filename : null;
+            console.log(`icon ${icon}`);
+            console.log('req.file:', req.file); // Log the req.file object
+            console.log('Bookmark data:', { name, url, icon, collectionId });
+            const bookmark = await Bookmark.create({
+                name,
+                url,
+                icon,
+                collectionId
+            });
+            res.status(201).json(bookmark); // Return the created bookmark
         } catch (error) {
-            res.status(500).json({ error: error.message });
+            console.error('Error creating bookmark:', error);
+            res.status(500).json({ error: 'Failed to create bookmark' });
         }
     },
 

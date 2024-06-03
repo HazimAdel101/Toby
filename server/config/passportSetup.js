@@ -8,13 +8,10 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    // console.log(`Deserializing user with id: ${id}`);
     try {
         const user = await User.findByPk(id);
-        // console.log(`User found: ${user}`);
         done(null, user);
     } catch (error) {
-        // console.error(`Error deserializing user: ${error}`);
         done(error);
     }
 });
@@ -31,7 +28,6 @@ passport.use(new GitHubStrategy({
         let user = await User.findOne({ where: { githubId: profile.id } });
 
         if (!user) {
-            // console.log('User not found, creating new user.');
             user = await User.create({
                 githubId: profile.id,
                 firstName: profile.displayName || 'First Name',
@@ -39,9 +35,6 @@ passport.use(new GitHubStrategy({
                 email: profile.emails && profile.emails[0] ? profile.emails[0].value : 'noemail@example.com',
                 password: '123456' // Consider using a more secure method for password
             });
-            // console.log('User created:', user);
-        } else {
-            // console.log('User found:', user);
         }
 
         done(null, user);

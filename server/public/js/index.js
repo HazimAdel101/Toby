@@ -1,6 +1,6 @@
 function toggleCollection(collectionId, button) {
-    var collection = document.getElementById(collectionId);
-    var arrowIcon = button.querySelector('img');
+    var collection = document.getElementById('collection' + collectionId);
+    var arrowIcon = document.getElementById('arrowIcon' + collectionId);
 
     if (collection.classList.contains('hidden')) {
         collection.classList.remove('hidden');
@@ -10,7 +10,6 @@ function toggleCollection(collectionId, button) {
         arrowIcon.classList.remove('rotate-90');
     }
 }
-
 
 function populateUpdateForm(id, name, description) {
     document.getElementById('collectionId').value = id;
