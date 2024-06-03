@@ -10,3 +10,15 @@ function toggleCollection(collectionId, button) {
         arrowIcon.classList.remove('rotate-90');
     }
 }
+
+
+function populateUpdateForm(id, name, description) {
+    document.getElementById('collectionId').value = id;
+    document.getElementById('collectionName').value = name;
+    document.getElementById('collectionDescription').value = description;
+}
+
+function confirmDelete(id, name) {
+    document.getElementById('deleteCollectionId').value = id;
+    document.getElementById('deleteCollectionName').textContent = name;
+}

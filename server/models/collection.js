@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         userId: {
             type: DataTypes.INTEGER,
             allowNull: false
-        }
+        },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+
     });
 
     Collection.associate = (models) => {
