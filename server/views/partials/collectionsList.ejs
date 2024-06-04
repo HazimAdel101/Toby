@@ -1,11 +1,11 @@
 <% collections.forEach((collection, index)=> { %>
-    <% const colors=['bg-blue-100', 'bg-green-100' , 'bg-yellow-100' , 'bg-red-100' ,'bg-purple-100' ]; %>
+    <% const colors=['bg-blue-200', 'bg-green-200' , 'bg-yellow-200' , 'bg-red-200' ,'bg-purple-200' ]; %>
         <% const colorClass=colors[index % colors.length]; %>
             <div class="flex items-center justify-between mb-4">
                 <button class="text-2xl font-semibold text-left w-full flex items-center justify-start fade-in"
                     onclick="toggleCollection('<%= collection.id %>', this)">
                     <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
-                        <img src="/images/arrow.svg" class="w-4 h-4 ease-in-out duration-300 transform" alt="arrow"
+                        <img src="/images/arrow.svg" class="w-4 h-4 ease-in-out duration-300 transform rotate-90" alt="arrow"
                             id="arrowIcon<%= collection.id %>">
                     </span>
                     <%= collection.name %>
@@ -28,7 +28,7 @@
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bookmarks-container">
                 <% collection.bookmarks.forEach(bookmark=> { %>
                     <div
-                        class="<%= colorClass %> p-4 rounded-lg transform transition-transform hover:scale-105 fade-in">
+                        class="<%= colorClass %> p-4 rounded-lg transform transition-transform hover:scale-105 fade-in text-gray-700 font-bold">
                         <a href="<%= bookmark.url %>" target="_blank" class="block">
                             <div class="flex items-center space-x-2">
                                 <% if (bookmark.icon) { %>
@@ -58,14 +58,14 @@
                     <% }) %>
                         <button data-collection-id="<%= collection.id %>" data-modal-target="create-bookmark"
                             data-modal-toggle="create-bookmark"
-                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            class="<%= colorClass %> p-4 rounded-lg transform transition-transform hover:scale-105 fade-in text-gray-700 font-bold text-xl"
                             type="button" onclick="createBookmarkButtonClicked(this)">
-                            New Bookmark
+                            New Link
                         </button>
             </div>
             <% }) %>
 
-                
+
 
                 <div id="create-bookmark" tabindex="-1" aria-hidden="true"
                     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

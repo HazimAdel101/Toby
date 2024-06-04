@@ -19,17 +19,20 @@ module.exports = (sequelize, DataTypes) => {
     Collection.associate = (models) => {
         Collection.belongsTo(models.User, {
             foreignKey: 'userId',
-            as: 'user'
+            as: 'user',
+            onDelete: 'CASCADE'
         });
         Collection.hasMany(models.Bookmark, {
             foreignKey: 'collectionId',
-            as: 'bookmarks'
+            as: 'bookmarks',
+            onDelete: 'CASCADE'
         });
         Collection.belongsToMany(models.Tag, {
             through: 'CollectionTags',
             as: 'tags',
             foreignKey: 'collectionId',
-            otherKey: 'tagId'
+            otherKey: 'tagId',
+            onDelete: 'SET NULL'
         });
     };
 

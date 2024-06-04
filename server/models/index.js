@@ -10,10 +10,24 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
+
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(process.env[config.use_env_variable], config, {
+    logging: (msg) => {
+      if (msg.toLowerCase().includes('error') || msg.toLowerCase().includes('warn')) {
+        console.log(msg);
+      }
+    },
+  });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, {
+    ...config,
+    logging: (msg) => {
+      if (msg.toLowerCase().includes('error') || msg.toLowerCase().includes('warn')) {
+        console.log(msg);
+      }
+    },
+  });
 }
 
 fs

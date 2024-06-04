@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
             through: 'CollectionTags',
             as: 'collections',
             foreignKey: 'tagId',
-            otherKey: 'collectionId'
+            otherKey: 'collectionId',
+            onDelete: 'SET NULL'
         });
     };
 
