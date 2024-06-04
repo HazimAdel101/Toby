@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt'); // Use bcrypt for password hashing
+const bcrypt = require('bcrypt');
 const db = require('../models/index.js');
 const Passport = require('../config/passportSetup.js');
 const { User } = db;
@@ -14,14 +14,14 @@ const UserController = {
                 const fullName = profile.displayName ? profile.displayName.split(' ') : ["First Name", "Last Name"];
                 const firstName = fullName[0] || "First Name";
                 const lastName = fullName[1] || "Last Name";
-                const email = (profile.profileUrl && profile.profileUrl[0] && profile.profileUrl[0].value) ? profile.profileUrl[0].value : 'noemail@example.com';
+                const email = (profile.profileUrl && profile.profileUrl[0] && profile.profileUrl[0].value) ? profile.profileUrl[0].value : '';
 
                 user = await User.create({
                     githubId: profile.id,
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
-                    password: '123456', // Consider using a more secure method for password
+                    password: '', 
                 });
                 console.log('User created:', user);
             }
@@ -39,12 +39,12 @@ const UserController = {
             console.log('User found:', user);
 
             if (!user) {
-                const hashedPassword = await bcrypt.hash(password || '123456', 10); // Hash the password
+                const hashedPassword = await bcrypt.hash(password , 10);
                 user = await User.create({
                     firstName,
                     lastName,
                     email,
-                    password: hashedPassword, // Store the hashed password
+                    password: hashedPassword,
                 });
                 console.log('User created:', user);
             }

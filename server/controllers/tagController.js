@@ -3,7 +3,8 @@ const { Tag, Collection } = require('../models');
 const TagController = {
     async createTag(req, res) {
         try {
-            const { name } = req.body;
+            const { name, color } = req.body;
+            console.log(color);
             const tag = await Tag.create({ name });
             res.status(201).json(tag);
         } catch (error) {

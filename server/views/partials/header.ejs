@@ -1,13 +1,14 @@
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="bg-white border-gray-200 dark:bg-gray-700">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/toby" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/images/toby.png" class="h-8" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Toby</span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            
             <button type="button"
-                class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                class="flex text-sm bg-gray-200 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                id="user-menu-button p-10" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="profile.png" alt="user photo">
@@ -16,8 +17,11 @@
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown">
                 <div class="px-4 py-3">
-                    <span class="block text-sm text-gray-900 dark:text-white"><%= user.firstName %> <%= user.lastName %> </span>
-                    
+                    <span class="block text-sm text-gray-900 dark:text-white">
+                        <%= user.firstName %>
+                            <%= user.lastName %>
+                    </span>
+
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
@@ -45,3 +49,35 @@
         </div>
     </div>
 </nav>
+<div class="bg-gray-300 w-full">
+    <div class="bg-gray-600 w-[80%] mx-auto block p-4 flex items-center justify-between">
+        <h1 class="text-3xl font-bold text-white">My collections</h1>
+
+        <div class="flex justify-end mb-4">
+            <button id="expandAll"
+                class="text-white bg-green-500 hover:bg-green-700 font-medium rounded-lg text-sm px-4 py-2 mr-2"
+                type="button">
+                Expand All
+            </button>
+            <button id="collapseAll"
+                class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2" type="button">
+                Collapse All
+            </button>
+        </div>
+
+        <div class="space-x-3 flex">
+
+            <button data-modal-target="tag-modal" data-modal-toggle="tag-modal"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                New Tag
+            </button>
+
+            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                New Collection
+            </button>
+        </div>
+    </div>
+</div>

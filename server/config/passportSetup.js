@@ -32,8 +32,7 @@ passport.use(new GitHubStrategy({
                 githubId: profile.id,
                 firstName: profile.displayName || 'First Name',
                 lastName: profile.username || 'Last Name',
-                email: profile.emails && profile.emails[0] ? profile.emails[0].value : 'noemail@example.com',
-                password: '123456' // Consider using a more secure method for password
+                email: profile.emails && profile.emails[0] ? profile.emails[0].value : null,
             });
         }
 

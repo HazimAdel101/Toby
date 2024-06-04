@@ -1,15 +1,15 @@
-function toggleCollection(collectionId, button) {
-    var collection = document.getElementById('collection' + collectionId);
-    var arrowIcon = document.getElementById('arrowIcon' + collectionId);
+// function toggleCollection(collectionId, button) {
+//     var collection = document.getElementById('collection' + collectionId);
+//     var arrowIcon = document.getElementById('arrowIcon' + collectionId);
 
-    if (collection.classList.contains('hidden')) {
-        collection.classList.remove('hidden');
-        arrowIcon.classList.add('rotate-90');
-    } else {
-        collection.classList.add('hidden');
-        arrowIcon.classList.remove('rotate-90');
-    }
-}
+//     if (collection.classList.contains('hidden')) {
+//         collection.classList.remove('hidden');
+//         arrowIcon.classList.add('rotate-90');
+//     } else {
+//         collection.classList.add('hidden');
+//         arrowIcon.classList.remove('rotate-90');
+//     }
+// }
 
 function populateUpdateForm(id, name, description) {
     document.getElementById('collectionId').value = id;
@@ -38,3 +38,61 @@ function confirmDelete (id, name) {
     document.getElementById('deleteCollectionName').textContent = name;
 }
 
+
+function populateCreateBookmarkForm(collectionId) {
+    document.getElementById('collectionId1').value = collectionId;
+    console.log('Collection id:', collectionId);
+}
+
+function createBookmarkButtonClicked(button) {
+    var collectionId = button.getAttribute('data-collection-id');
+    console.log('Collection id:', collectionId);
+
+    populateCreateBookmarkForm(collectionId);
+}
+
+
+function toggleCollection(collectionId, button) {
+    var collection = document.getElementById('collection' + collectionId);
+    var arrowIcon = document.getElementById('arrowIcon' + collectionId);
+
+    if (collection.classList.contains('hidden')) {
+        collection.classList.remove('hidden');
+        arrowIcon.classList.add('rotate-90');
+    } else {
+        collection.classList.add('hidden');
+        arrowIcon.classList.remove('rotate-90');
+    }
+}
+
+function expandAllCollections() {
+    document.querySelectorAll('[id^="collection"]').forEach(collection => {
+        collection.classList.remove('hidden');
+    });
+    document.querySelectorAll('[id^="arrowIcon"]').forEach(arrowIcon => {
+        arrowIcon.classList.add('rotate-90');
+    });
+}
+
+function collapseAllCollections() {
+    document.querySelectorAll('[id^="collection"]').forEach(collection => {
+        collection.classList.add('hidden');
+    });
+    document.querySelectorAll('[id^="arrowIcon"]').forEach(arrowIcon => {
+        arrowIcon.classList.remove('rotate-90');
+    });
+}
+
+document.getElementById('expandAll').addEventListener('click', expandAllCollections);
+document.getElementById('collapseAll').addEventListener('click', collapseAllCollections);
+
+document.querySelectorAll('[data-modal-toggle]').forEach(function (modalToggle) {
+    modalToggle.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetModalId = modalToggle.getAttribute('data-modal-toggle');
+        const modal = document.getElementById(targetModalId);
+        if (modal) {
+            modal.classList.toggle('hidden');
+        }
+    });
+});

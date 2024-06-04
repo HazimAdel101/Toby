@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
     try {
         // await createUserForm({ firstName, lastName, email, password });
         await UserController.createUserForm({ firstName, lastName, email, password });
-        res.redirect('/success'); // Redirect to a success page or wherever you want
+        res.redirect('/toby'); // Redirect to a success page or wherever you want
     } catch (error) {
         console.error('Error creating user:', error);
         res.redirect('/error'); // Redirect to an error page or handle the error appropriately
