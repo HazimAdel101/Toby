@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
     static associate(models) {
-      // Define associations here
     }
   }
 
@@ -37,12 +36,8 @@ module.exports = (sequelize, DataTypes) => {
   },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      // unique: true,
+      allowNull: true,
       validate: {
-        notNull: {
-          msg: 'Email cannot be null.'
-        },
         notEmpty: {
           msg: 'Email cannot be empty.'
         },
@@ -53,11 +48,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
-        notNull: {
-          msg: 'Last name cannot be null.'
-        },
+        
       }
     }
   }, {
@@ -68,8 +61,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = (models) => {
     User.hasMany(models.Collection, {
         foreignKey: 'userId',
-        as: 'collections',
-        onDelete: 'CASCADE' 
+        as: 'collections'
     });
 };
 

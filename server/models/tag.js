@@ -1,4 +1,3 @@
-// models/tag.js
 module.exports = (sequelize, DataTypes) => {
     const Tag = sequelize.define('Tag', {
         name: {
@@ -14,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             as: 'collections',
             foreignKey: 'tagId',
             otherKey: 'collectionId',
-            onDelete: 'SET NULL'
+            // onDelete: 'SET NULL'
         });
     };
 

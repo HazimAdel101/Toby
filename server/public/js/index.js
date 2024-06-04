@@ -21,8 +21,7 @@ function populateBookmarkUpdateForm (id, name, url, icon) {
     document.getElementById('bookmarkId3').value = id;
     document.getElementById('bookmarkName').value = name;
     document.getElementById('url2').value = url;
-    // document.getElementById('icon2').value = icon;
-
+    
     console.log(`icon: ${icon}, name: ${name}, url: ${url}, id: ${id}`);
     const iconImage = document.querySelector('#update-bookmark-modal img');
     iconImage.src = `/uploads/${icon}`;

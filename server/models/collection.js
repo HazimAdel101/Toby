@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
             as: 'tags',
             foreignKey: 'collectionId',
             otherKey: 'tagId',
-            onDelete: 'SET NULL'
+            // onDelete: 'SET NULL'
         });
     };
 

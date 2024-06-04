@@ -1,4 +1,4 @@
-const { Collection, User } = require('../models');
+const { Collection, User, Bookmark } = require('../models');
 
 const CollectionController = {
     async createCollection(req, res) {
@@ -42,6 +42,11 @@ const CollectionController = {
     async deleteCollection(req, res) {
         try {
             const { id } = req.body;
+
+            await Bookmark.destroy({
+                where: { collectionId: id }
+            });
+            
 
             await Collection.destroy({
                 where: { id }

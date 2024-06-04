@@ -14,7 +14,7 @@ const UserController = {
                 const fullName = profile.displayName ? profile.displayName.split(' ') : ["First Name", "Last Name"];
                 const firstName = fullName[0] || "First Name";
                 const lastName = fullName[1] || "Last Name";
-                const email = (profile.emails && profile.emails[0] && profile.emails[0].value) ? profile.emails[0].value : 'noemail@example.com';
+                const email = (profile.profileUrl && profile.profileUrl[0] && profile.profileUrl[0].value) ? profile.profileUrl[0].value : 'noemail@example.com';
 
                 user = await User.create({
                     githubId: profile.id,
