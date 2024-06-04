@@ -124,6 +124,7 @@ const UserController = {
             res.status(400).json({ error: error.message });
         }
     },
+
     async loginUser(email, password) {
         try {
             const user = await User.findOne({ where: { email } });
@@ -142,8 +143,15 @@ const UserController = {
             console.error('Error logging in:', error);
             throw error;
         }
-    }
+    },
+    async logoutUser(req, res, next) {
+        req.logout(function (err) {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/login');
+        });
+    },
 
 };
-
 module.exports = UserController;

@@ -6,15 +6,9 @@ const { User } = require('../models');
 const {isAuth} = require('../middleware/auth')
 const router = Router();
 
-
-// Logout
-router.get('/logout', (req, res, next) => {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        res.redirect('/login');
-    });
+router.get('/logout', isAuth, (req, res, next) => {
+    UserController.logoutUser(req, res, next);
 });
-
 
 router.get('/github', Passport.authenticate('github'));
 

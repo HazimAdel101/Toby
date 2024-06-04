@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const path = require('path');
-const rfs = require('rotating-file-stream'); // version 2.x
+const rfs = require('rotating-file-stream');
 const expressLayouts = require('express-ejs-layouts');
 const passportSetup = require('./config/passportSetup.js');
 
@@ -14,11 +14,10 @@ app.use(express.json());
 
 // create a rotating write stream
 const accessLogStream = rfs.createStream('access.log', {
-    interval: '1d', // rotate daily
+    interval: '1d',
     path: path.join(__dirname, 'log')
 });
 
-// setup the logger
 app.use(morgan('combined', { stream: accessLogStream }));
 
 // static files

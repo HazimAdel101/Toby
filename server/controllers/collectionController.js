@@ -18,6 +18,7 @@ const CollectionController = {
     async getUserCollections(req, res) {
         try {
             const userId = req.params.userId;
+            console.log(`userId ${userId}`);
             const collections = await Collection.findAll({ where: { userId } });
             res.json(collections);
         } catch (error) {
@@ -29,9 +30,9 @@ const CollectionController = {
         try {
             const { id, name, description } = req.body;
             await Collection.update({ name, description }, {
-                where: { id }  
+                where: { id }
             });
-            
+
             res.redirect('/toby');
         } catch (error) {
             console.error('Error updating collection:', error);
@@ -41,19 +42,18 @@ const CollectionController = {
     async deleteCollection(req, res) {
         try {
             const { id } = req.body;
-            
-            // Find the collection by id and delete it
+
             await Collection.destroy({
                 where: { id }
             });
-    
+
             res.redirect('/toby');
         } catch (error) {
             console.error('Error deleting collection:', error);
             res.status(500).send('Server Error');
         }
-    }    
-    
+    }
+
 };
 
 module.exports = CollectionController;
