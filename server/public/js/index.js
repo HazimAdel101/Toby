@@ -17,7 +17,25 @@ function populateUpdateForm(id, name, description) {
     document.getElementById('collectionDescription').value = description;
 }
 
-function confirmDelete(id, name) {
+function populateBookmarkUpdateForm (id, name, url, icon) {
+    document.getElementById('bookmarkId3').value = id;
+    document.getElementById('bookmarkName').value = name;
+    document.getElementById('url2').value = url;
+    // document.getElementById('icon2').value = icon;
+
+    console.log(`icon: ${icon}, name: ${name}, url: ${url}, id: ${id}`);
+    const iconImage = document.querySelector('#update-bookmark-modal img');
+    iconImage.src = `/uploads/${icon}`;
+    iconImage.alt = name
+}
+
+function confirmBookmarkDelete(id, name) {
+    document.getElementById('deleteLinkId').value = id;
+    document.getElementById('deleteLinkName').textContent = name;
+}
+
+function confirmDelete (id, name) {
     document.getElementById('deleteCollectionId').value = id;
     document.getElementById('deleteCollectionName').textContent = name;
 }
+

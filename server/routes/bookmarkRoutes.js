@@ -1,25 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const BookmarkController = require('../controllers/bookmarkController');
-// const multer = require('multer');
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "public/uploads/")
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + "-" + file.originalname)
-//     },
-// })
-
-
-// const upload = multer({ storage });
-
-// router.post('/create', upload.single('icon'), BookmarkController.createBookmark);
-
-// module.exports = router;
-
-
 const express = require('express');
 const router = express.Router();
 const BookmarkController = require('../controllers/bookmarkController');
@@ -48,7 +26,6 @@ const imageFileFilter = (req, file, cb) => {
     }
 };
 
-// Configure multer with storage and file filter
 const upload = multer({ 
     storage,
     fileFilter: imageFileFilter 
@@ -57,7 +34,15 @@ const upload = multer({
 // Route for creating a bookmark
 router.post('/create', upload.single('icon'), (req, res, next) => {
     BookmarkController.createBookmark(req, res).catch(next);
+    res.redirect('/toby')
 });
+
+router.post('/update', upload.single('icon'), (req, res, next) => {
+    console.error('you are at the update correctly');
+    BookmarkController.updateBookmark(req, res).catch(next);
+});
+
+router.post('/delete',  BookmarkController.deleteBookmark);
 
 // Error handling middleware for multer errors
 router.use((err, req, res, next) => {
@@ -73,4 +58,3 @@ router.use((err, req, res, next) => {
 });
 
 module.exports = router;
-
