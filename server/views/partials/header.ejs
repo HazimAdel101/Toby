@@ -50,33 +50,40 @@
     </div>
 </nav>
 <div class="bg-gray-300 w-full">
-    <div class="bg-gray-600 w-[80%] mx-auto block p-4 flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-white">My collections</h1>
+    <div class="bg-gray-600 w-[80%] mx-auto block p-4 flex items-start justify-between">
+        <h1 class="text-3xl font-bold text-white">My collections|  <span class="text-sm"> <%- collectionCount %> collections</span></h1>
 
         <div class="flex justify-end mb-4">
             <button id="expandAll"
-                class="text-white bg-green-500 hover:bg-green-700 font-medium rounded-lg text-sm px-4 py-2 mr-2"
+                class="text-white bg-green-500 hover:bg-green-700 font-medium rounded-lg text-sm px-4 py-2 mr-2 flex items-center justify-center space-x-2"
                 type="button">
-                Expand All
+                <img src="/images/expand.svg" alt="expand" class="">
+                <span>Expand All</span>
+                
             </button>
             <button id="collapseAll"
-                class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2" type="button">
-                Collapse All
+                class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2 flex items-center justify-center space-x-2" type="button">
+                <img src="/images/collapse.svg" alt="collapse" class="">
+                <span>Collapse All</span>
+                
             </button>
         </div>
 
         <div class="space-x-3 flex">
 
             <button data-modal-target="tag-modal" data-modal-toggle="tag-modal"
-                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex items-center justify-center space-x-2"
                 type="button">
-                New Tag
+                <img src="/images/tag.svg" alt="tag" class="">
+                <span>New Tag</span>
             </button>
 
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex items-center justify-center space-x-2"
                 type="button">
-                New Collection
+                <img src="/images/new-collection.svg" alt="collection" class="">
+                <span>New Collection</span>
+                
             </button>
         </div>
     </div>

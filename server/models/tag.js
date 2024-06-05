@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            // unique: true
         },
         color: {
             type: DataTypes.STRING,
@@ -15,7 +15,11 @@ module.exports = (sequelize, DataTypes) => {
                     }
                 }
             }
-        }
+        },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
     });
 
     Tag.associate = (models) => {
@@ -25,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'tagId',
             otherKey: 'collectionId',
             // onDelete: 'SET NULL'
+        });
+
+        Tag.belongsTo(models.User, {
+            foreignKey: 'userId',
+            as: 'user'
         });
     };
 
