@@ -1,4 +1,4 @@
-const { Collection, User, Bookmark } = require('../models');
+const { Collection, User, Bookmark, Tag } = require('../models');
 
 const CollectionController = {
     async createCollection(req, res) {
@@ -46,7 +46,7 @@ const CollectionController = {
             await Bookmark.destroy({
                 where: { collectionId: id }
             });
-            
+
 
             await Collection.destroy({
                 where: { id }
@@ -57,8 +57,24 @@ const CollectionController = {
             console.error('Error deleting collection:', error);
             res.status(500).send('Server Error');
         }
-    }
+    },
 
+    async addTagToCollection(req, res) {
+        try {
+            const { collectionId, tagId } = req.body;
+            const collection = await Collection.findByPk(collectionId);
+            const tag = await Tag.findByPk(tagId);
+    
+            if (collection && tag) {
+                await collection.addTag(tag);
+                res.status(200).redirect('/toby');
+            } else {
+                res.status(404).redirect('/toby');
+            }
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
 };
 
 module.exports = CollectionController;

@@ -18,12 +18,11 @@ router.post('/register', async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
     try {
-        // await createUserForm({ firstName, lastName, email, password });
         await UserController.createUserForm({ firstName, lastName, email, password });
-        res.redirect('/toby'); // Redirect to a success page or wherever you want
+        res.redirect('/toby');
     } catch (error) {
         console.error('Error creating user:', error);
-        res.redirect('/error'); // Redirect to an error page or handle the error appropriately
+        res.redirect('/error');
     }
 });
 
@@ -56,7 +55,6 @@ router.post('/login', async (req, res, next) => {
 
 // render main page
 router.get('/toby', isAuth, RenderController.renderMainPage);
-
-router.get('/toby', isAuth, CollectionController.getUserCollections);
+// router.get('/toby', isAuth, CollectionController.getUserCollections);
 
 module.exports = router;

@@ -7,5 +7,6 @@ const router = Router();
 router.post('/create', isAuth, CollectionController.createCollection);
 router.post('/update', isAuth, CollectionController.updateCollection);
 router.post('/delete', isAuth, CollectionController.deleteCollection);
+router.post('/create/tag', isAuth, CollectionController.addTagToCollection);
 
 module.exports = router;
