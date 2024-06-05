@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const BookmarkController = require('../controllers/bookmarkController');
+const {isAuth} = require('../middleware/auth')
 const multer = require('multer');
 
 // Define the storage
@@ -32,17 +33,17 @@ const upload = multer({
 });
 
 // Route for creating a bookmark
-router.post('/create', upload.single('icon'), (req, res, next) => {
+router.post('/create', isAuth, upload.single('icon'), (req, res, next) => {
     BookmarkController.createBookmark(req, res).catch(next);
     res.redirect('/toby')
 });
 
-router.post('/update', upload.single('icon'), (req, res, next) => {
+router.post('/update', upload.single('icon'),  isAuth, (req, res, next) => {
     console.error('you are at the update correctly');
     BookmarkController.updateBookmark(req, res).catch(next);
 });
 
-router.post('/delete',  BookmarkController.deleteBookmark);
+router.post('/delete', isAuth,  BookmarkController.deleteBookmark);
 
 // Error handling middleware for multer errors
 router.use((err, req, res, next) => {
