@@ -5,6 +5,14 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
     static associate(models) {
+      User.hasMany(models.Collection, {
+        foreignKey: 'userId',
+        as: 'collections'
+      });
+      User.hasMany(models.Tag, {
+        foreignKey: 'userId',
+        as: 'tags'
+      });
     }
   }
 
@@ -32,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     githubId: {
       type: DataTypes.STRING,
-      // unique: true
-  },
+      unique: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -47,20 +55,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        
+
       }
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'user'
     }
   }, {
     sequelize,
     modelName: 'User',
   });
-  
+
   User.associate = (models) => {
     User.hasMany(models.Collection, {
-        foreignKey: 'userId',
-        as: 'collections'
+      foreignKey: 'userId',
+      as: 'collections'
     });
-};
+  };
 
   return User;
 };

@@ -2,7 +2,13 @@ module.exports = (sequelize, DataTypes) => {
     const Bookmark = sequelize.define('Bookmark', {
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Name cannot be null.'
+                },
+            }
+
         },
         url: {
             type: DataTypes.STRING,
@@ -10,18 +16,23 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 isUrl: {
                     msg: 'Must be a valid URL',
-                    args: true,                }
+                    args: true,
+                }
             }
         },
         icon: {
             type: DataTypes.STRING,
             allowNull: true,
-            validate: {
-            }
+
         },
         collectionId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Collection Id missing'
+                },
+            }
         }
     });
 
