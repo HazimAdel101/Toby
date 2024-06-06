@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: true
         },
-
     });
 
     Collection.associate = (models) => {
@@ -37,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'collectionId',
             otherKey: 'tagId',
         });
+        Collection.belongsTo(models.Workspace, {
+            foreignKey: 'workspaceId',
+            as: 'workspace'
+        });
+
     };
 
     return Collection;

@@ -47,7 +47,6 @@ const CollectionController = {
                 where: { collectionId: id }
             });
 
-
             await Collection.destroy({
                 where: { id }
             });

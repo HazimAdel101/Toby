@@ -1,7 +1,41 @@
-const { Collection, Bookmark, Tag } = require('../models');
+const { Collection, Bookmark, Tag, Workspace, User } = require('../models');
 
 exports.renderMainPage = async (req, res) => {
     try {
+        const userId = req.user.id;
+
+        // Fetch workspaces and their collections for the user
+        const user = await User.findByPk(userId, {
+            include: {
+                model: Workspace,
+                as: 'workspaces',
+                include: {
+                    model: Collection,
+                    as: 'collections',
+                    include: [
+                        {
+                            model: Bookmark,
+                            as: 'bookmarks'
+                        },
+                        {
+                            model: Tag,
+                            as: 'tags'
+                        }
+                    ]
+                }
+            }
+        });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const workspaces = user.workspaces;
+
+        const tags = await Tag.findAll({
+            where: { userId }
+        });
+
         const collections = await Collection.findAll({
             where: { userId: req.user.id },
             include: [
@@ -16,17 +50,13 @@ exports.renderMainPage = async (req, res) => {
             ]
         });
 
-        const tags = await Tag.findAll({
-            where: { userId: req.user.id }
-        });
-
         const collectionCount = await Collection.count({
-            where: { userId: req.user.id }
+            where: { userId }
         });
 
-        res.render('toby', { user: req.user, collections, tags, collectionCount });
+        res.render('toby', { user: req.user, workspaces, tags, collectionCount, collections });
     } catch (error) {
-        console.error('Error fetching collections and bookmarks:', error);
+        console.error('Error fetching data: ', error);
         res.status(500).send('Internal Server Error');
     }
 };

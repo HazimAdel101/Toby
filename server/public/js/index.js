@@ -4,6 +4,14 @@ function populateUpdateForm(id, name, description) {
     document.getElementById('collectionDescription').value = description;
 }
 
+function populateUpdateWorkspaceForm(id, name, description) {
+    document.getElementById('updateWorkspaceId').value = id;
+    document.getElementById('updateWorkspaceName').value = name;
+    document.getElementById('updateWorkspaceDescription').value = description;
+
+    console.log(` name: ${name}, description: ${description}, id: ${id}`);
+}
+
 function populateBookmarkUpdateForm (id, name, url, icon) {
     document.getElementById('bookmarkId3').value = id;
     document.getElementById('bookmarkName').value = name;
@@ -18,6 +26,11 @@ function populateBookmarkUpdateForm (id, name, url, icon) {
 function confirmBookmarkDelete(id, name) {
     document.getElementById('deleteLinkId').value = id;
     document.getElementById('deleteLinkName').textContent = name;
+}
+
+function confirmWorkspaceDelete(id, name) {
+    document.getElementById('deleteWorkspaceId').value = id;
+    document.getElementById('deleteWorkspaceName').textContent = name;
 }
 
 function confirmDelete (id, name) {

@@ -2,7 +2,6 @@
     <div class="bg-slate-300 min-h-screen flex items-center justify-center">
 
         <section class="w-[80%] block min-h-screen mx-auto p-6 bg-slate-50 shadow-md rounded-lg">
-
             <%- include('partials/collectionForm') %>
                 <%- include('partials/collectionsList') %>
                     <%- include('partials/deleteModal') %>
@@ -11,4 +10,9 @@
                                 <%- include('partials/updateBookmarkModal') %>
                                     <%- include('partials/updateModal') %>
                                         <%- include('partials/createTagModal') %>
-                                        <%- include('partials/createTagCollectionModal') %>
+                                            <%- include('partials/createTagCollectionModal') %>
+                                                <%- include('partials/createWorkspaceModal') %>
+                                                    <%- include('partials/workspacesList') %>
+                                                        <%- include('partials/createWorkspaceCollectionModal') %>
+                                                            <%- include('partials/updateWorkspaceModal') %>
+                                                            <%- include('partials/deleteWorkspaceModal') %>

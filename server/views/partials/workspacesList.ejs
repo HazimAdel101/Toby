@@ -1,0 +1,116 @@
+<div class="flex items-center justify-between bg-slate-600">
+    <h1 class="text-3xl px-2 py-3 font-bold text-white">Workspaces</h1>
+    <button data-modal-target="workspace-create-modal" data-modal-toggle="workspace-create-modal"
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex items-center justify-center space-x-2"
+        type="button">
+        <img src="/images/new-collection.svg" alt="collection" class="">
+        <span>New Workspace</span>
+
+    </button>
+</div>
+
+<% workspaces.forEach(workspace=> { %>
+    <div class="flex items-center justify-between space-y-2">
+        <h2 class="text-xl font-bold">
+            <%= workspace.name %>
+        </h2>
+        <button
+        onclick="populateUpdateWorkspaceForm('<%= workspace.id %>', '<%= workspace.name %>', '<%= workspace.description %>')"
+        data-modal-target="update-workspace-modal" data-modal-toggle="update-workspace-modal"
+        class="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2 transition duration-300"
+        type="button">
+        <img src="/images/edit.svg" alt="edit">
+
+        <button onclick="confirmWorkspaceDelete('<%= workspace.id %>', '<%= workspace.name %>')"
+            data-modal-target="popup-workspace-modal" data-modal-toggle="popup-workspace-modal"
+            class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2"
+            type="button">
+            <img src="/images/delete.svg" alt="delete">
+            
+        </button>
+
+    </button>
+
+    </div>
+    <% workspace.collections.forEach((collection, index)=> { %>
+        <% const colors=['bg-blue-200', 'bg-green-200' , 'bg-yellow-200' , 'bg-red-200' , 'bg-purple-200' ]; %>
+            <% const colorClass=colors[index % colors.length]; %>
+                <div class="flex items-center justify-between mb-4 space-y-3">
+                    <button class="text-2xl font-semibold text-left w-full flex items-center justify-start fade-in"
+                        onclick="toggleCollection('<%= collection.id %>', this)">
+                        <span class="mr-2 w-6 h-6 rounded-full flex items-center justify-center bg-slate-600">
+                            <img src="/images/arrow.svg" class="w-4 h-4 ease-in-out duration-300 transform rotate-90"
+                                alt="arrow" id="arrowIcon<%= collection.id %>">
+                        </span>
+                        <%= collection.name %>
+                            <div class="ms-3 flex space-x-2">
+                                <% collection.tags.forEach(tag=> { %>
+                                    <span class="px-2 py-2 rounded text-white text-xs"
+                                        style="background-color: <%= tag.color %>;">
+                                        <%= tag.name %>
+                                    </span>
+                                    <% }) %>
+                            </div>
+                            <span data-modal-target="create-tag-modal" data-modal-toggle="create-tag-modal"
+                                class="<%= colorClass %> ms-2 px-4 py-1 rounded text-white text-xs"
+                                onclick="openCreateTagModal('<%= collection.id %>')">
+                                <img src="/images/plus.svg" alt="add tag">
+                            </span>
+                    </button>
+                    <button
+                        onclick="populateUpdateForm('<%= collection.id %>', '<%= collection.name %>', '<%= collection.description %>')"
+                        data-modal-target="update-modal" data-modal-toggle="update-modal"
+                        class="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2"
+                        type="button">
+                        <img src="/images/edit.svg" alt="edit">
+                    </button>
+                    <button onclick="confirmDelete('<%= collection.id %>', '<%= collection.name %>')"
+                        data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                        class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2"
+                        type="button">
+                        <img src="/images/delete.svg" alt="delete">
+                    </button>
+                </div>
+                <div id="collection<%= collection.id %>"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bookmarks-container">
+                    <% collection.bookmarks.forEach(bookmark=> { %>
+                        <div
+                            class="<%= colorClass %> p-4 h-[125px] rounded-lg transform transition-transform hover:scale-105 fade-in text-gray-700 font-bold shadow-lg">
+                            <a href="<%= bookmark.url %>" target="_blank" class="block">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <% if (bookmark.icon) { %>
+                                        <div class="w-10 h-10 rounded-full bg-cover bg-center"
+                                            style="background-image: url('/uploads/<%= bookmark.icon %>');"></div>
+                                        <% } %>
+                                            <span class="text-lg font-semibold">
+                                                <%= bookmark.name %>
+                                            </span>
+                                </div>
+                            </a>
+                            <div class="flex justify-between space-x-2">
+                                <button
+                                    onclick="populateBookmarkUpdateForm('<%= bookmark.id %>', '<%= bookmark.name %>', '<%= bookmark.url %>', '<%= bookmark.icon %>')"
+                                    data-modal-target="update-bookmark-modal" data-modal-toggle="update-bookmark-modal"
+                                    class="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2 transition duration-300"
+                                    type="button">
+                                    <img src="/images/edit.svg" alt="edit">
+                                </button>
+                                <button onclick="confirmBookmarkDelete('<%= bookmark.id %>', '<%= bookmark.name %>')"
+                                    data-modal-target="delete-bookmark-modal" data-modal-toggle="delete-bookmark-modal"
+                                    class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2 transition duration-300"
+                                    type="button">
+                                    <img src="/images/delete.svg" alt="delete">
+                                </button>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <button data-collection-id="<%= collection.id %>" data-modal-target="create-bookmark"
+                                data-modal-toggle="create-bookmark"
+                                class="<%= colorClass %> p-4 rounded-lg transform transition-transform hover:scale-105 fade-in text-gray-700 font-bold text-xl h-[125px] flex items-center justify-center"
+                                type="button" onclick="createBookmarkButtonClicked(this)">
+                                <img src="/images/plus.svg" alt="add a link" class="h-full w-full">
+                            </button>
+                </div>
+                <hr class="my-1" />
+                <% }) %>
+                    <% }) %>

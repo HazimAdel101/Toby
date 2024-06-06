@@ -6,6 +6,7 @@ const mainRoutes = require('./routes/index.js');
 const collectionRoutes = require('./routes/collectionRoutes.js')
 const bookmarkRoutes = require('./routes/bookmarkRoutes.js')
 const tagRoutes = require('./routes/tagRoutes.js')
+const workspaceRoutes = require('./routes/workspaceRoutes.js')
 
 // Routes
 app.use('/', mainRoutes);
@@ -14,6 +15,7 @@ app.use('/auth', authRoutes);
 app.use('/collections', collectionRoutes);
 app.use('/bookmarks', bookmarkRoutes);
 app.use('/tags', tagRoutes);
+app.use('/workspaces', workspaceRoutes);
 const PORT = process.env.PORT || 3000;
 
 db.sequelize.sync().then(() => {

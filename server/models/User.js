@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-
     static associate(models) {
       User.hasMany(models.Collection, {
         foreignKey: 'userId',
@@ -12,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Tag, {
         foreignKey: 'userId',
         as: 'tags'
+      });
+      User.belongsToMany(models.Workspace, {
+        through: 'WorkspaceUser',
+        foreignKey: 'userId',
+        otherKey: 'workspaceId',
+        as: 'workspaces'
       });
     }
   }
@@ -36,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {
           msg: 'Last name cannot be null.'
         },
+        notEmpty: {
+          msg: 'Last name cannot be empty.'
+        }
       }
     },
     githubId: {
@@ -55,7 +63,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-
+        notEmpty: {
+          msg: 'Password cannot be empty.'
+        }
       }
     },
     role: {
@@ -67,13 +77,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
-
-  User.associate = (models) => {
-    User.hasMany(models.Collection, {
-      foreignKey: 'userId',
-      as: 'collections'
-    });
-  };
 
   return User;
 };
