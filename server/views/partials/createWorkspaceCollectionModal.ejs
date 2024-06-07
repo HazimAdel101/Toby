@@ -16,8 +16,9 @@
                 </button>
             </div>
             <form class="p-4 md:p-5" action="/workspaces/create/collection" method="POST">
+                <input type="hidden" name="workspaceId"id="workspaceCollectionId">
                 <input type="hidden" name="userId" value="<%= user.id %>">
-                <input type="hidden" name="workspaceId" id="workspaceId">
+
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="name"

@@ -8,8 +8,14 @@ function populateUpdateWorkspaceForm(id, name, description) {
     document.getElementById('updateWorkspaceId').value = id;
     document.getElementById('updateWorkspaceName').value = name;
     document.getElementById('updateWorkspaceDescription').value = description;
+}
 
-    console.log(` name: ${name}, description: ${description}, id: ${id}`);
+
+
+function populateWorkspaceCollectionForm(id) {
+    document.getElementById('workspaceCollectionId').value = id;
+
+    console.log(`id: ${id}`);
 }
 
 function populateBookmarkUpdateForm (id, name, url, icon) {
@@ -46,8 +52,6 @@ function populateCreateBookmarkForm(collectionId) {
 
 function createBookmarkButtonClicked(button) {
     var collectionId = button.getAttribute('data-collection-id');
-    console.log('Collection id:', collectionId);
-
     populateCreateBookmarkForm(collectionId);
 }
 

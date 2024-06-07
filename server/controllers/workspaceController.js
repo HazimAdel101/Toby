@@ -1,4 +1,4 @@
-const { Workspace, User, Collection } = require('../models');
+const { Workspace, User, Collection, Bookmark } = require('../models');
 
 const WorkspaceController = {
     async createWorkspace(req, res) {
@@ -11,7 +11,7 @@ const WorkspaceController = {
             if (!user) {
                 return res.status(404).redirect('/toby');
             }
-            // Add the user to the workspace (create the relationship in the relation table)
+
             await workspace.addUser(user);
             res.status(201).redirect('/toby');
         } catch (error) {
@@ -45,16 +45,19 @@ const WorkspaceController = {
         try {
             const { id } = req.body;
 
-            
+            const collections = await Collection.findAll({ where: { workspaceId: id } });
 
-            await Workspace.destroy({
-                where: { id }
-            });
+            for (const collection of collections) {
+                await Bookmark.destroy({ where: { collectionId: collection.id } });
+            }
+            await Collection.destroy({ where: { workspaceId: id } });
+            await Workspace.destroy({ where: { id } });
 
             res.redirect('/toby');
+
         } catch (error) {
-            console.error('Error deleting collection:', error);
-            res.status(500).send('Server Error');
+            res.redirect('/toby');
+            console.error('Error deleting workspace:', error);
         }
     },
     async createWorkspaceCollection(req, res) {
@@ -72,11 +75,32 @@ const WorkspaceController = {
 
             const collection = await Collection.create({ name, userId, description, workspaceId });
 
+            console.log(collection);
+
             res.status(201).redirect('/toby');
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
+    },
+    async addUserToWorkspace(req, res) {
+        try {
+            const { userId, workspaceId } = req.body;
+            const role = 'user'
+            const user = await User.findByPk(userId);
+            const workspace = await Workspace.findByPk(workspaceId);
+
+            if (user && workspace && role) {
+                await workspace.addUser(user, { through: { role }});
+                res.status(200).redirect('/toby');
+            }
+            else {
+                res.status(404).redirect('/toby/jfjf');
+            }
+        }
+        catch (error) {
+            res.status(500).redirect('/toby');
+        }
+    },
 };
 
 module.exports = WorkspaceController;

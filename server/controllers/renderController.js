@@ -36,6 +36,8 @@ exports.renderMainPage = async (req, res) => {
             where: { userId }
         });
 
+        const users = await User.findAll();
+
         const collections = await Collection.findAll({
             where: { userId: req.user.id },
             include: [
@@ -54,7 +56,7 @@ exports.renderMainPage = async (req, res) => {
             where: { userId }
         });
 
-        res.render('toby', { user: req.user, workspaces, tags, collectionCount, collections });
+        res.render('toby', { user: req.user, users, workspaces, tags, collectionCount, collections });
     } catch (error) {
         console.error('Error fetching data: ', error);
         res.status(500).send('Internal Server Error');
