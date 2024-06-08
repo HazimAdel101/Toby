@@ -22,7 +22,9 @@ const WorkspaceController = {
 
     async editWorkspace(req, res) {
         try {
-            const { id, name, description } = req.body;
+            const { workspaceId, name, description } = req.body;
+            const id = workspaceId;
+
             console.error(`id ${id}, description ${description}, name ${name}`);
             const workspace = await Workspace.findByPk(id);
             if (!workspace) {
@@ -43,8 +45,8 @@ const WorkspaceController = {
 
     async delete(req, res) {
         try {
-            const { id } = req.body;
-
+            const { workspaceId } = req.body;
+            const id = workspaceId;
             const collections = await Collection.findAll({ where: { workspaceId: id } });
 
             for (const collection of collections) {

@@ -22,7 +22,7 @@ const checkRole = async (req, res, next) => {
         next();
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error checking authorization' });
+        res.status(500).json({ message: 'Error (server error)' });
     }
 };
 
