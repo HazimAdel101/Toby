@@ -7105,3 +7105,4 @@
 ::1 - - [07/Jun/2024:00:42:39 +0000] "GET /uploads/default-icon.png HTTP/1.1" 404 163 "http://localhost:3000/toby" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 ::1 - - [07/Jun/2024:00:42:39 +0000] "GET /images/edit.svg HTTP/1.1" 304 - "http://localhost:3000/toby" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 ::1 - - [07/Jun/2024:00:42:39 +0000] "GET /images/delete.svg HTTP/1.1" 304 - "http://localhost:3000/toby" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+::1 - - [07/Jun/2024:00:45:37 +0000] "POST /workspaces/create/collection HTTP/1.1" 403 70 "http://localhost:3000/toby" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
