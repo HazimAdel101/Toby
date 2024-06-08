@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "admin",
     "database": "toby",
     "host": "localhost",
     "dialect": "mysql"

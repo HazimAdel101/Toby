@@ -28,23 +28,23 @@
             class="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2 transition duration-300"
             type="button">
             <img src="/images/edit.svg" alt="edit">
-
+            
             <button onclick="confirmWorkspaceDelete('<%= workspace.id %>', '<%= workspace.name %>')"
                 data-modal-target="popup-workspace-modal" data-modal-toggle="popup-workspace-modal"
                 class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2" type="button">
                 <img src="/images/delete.svg" alt="delete">
-
             </button>
-            
 
         </button>
+
         <form class="flex" action="/workspaces/create/collaborator" method="POST">
             <input type="hidden" name="workspaceId" value="<%= workspace.id %>" />
             <label for="users">Add a collaborator</label>
             <select name="userId" id="users">
                 <% users.forEach(function(user) { %>
                     <option value="<%= user.id %>">
-                        <%= user.firstName %> <%= user.lsstName %>
+                        <%= user.firstName %>
+                            <%= user.lsstName %>
                     </option>
                     <% }); %>
             </select>

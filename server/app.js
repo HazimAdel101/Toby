@@ -51,24 +51,6 @@ app.use(methodOverride('_method'));
 
 
 
-// Assuming you have a tag addition route
-app.post('/collections/add-tag', async (req, res) => {
-    try {
-        const { collectionId, tagId } = req.body;
-
-        const collection = await Collection.findByPk(collectionId);
-        const tag = await Tag.findByPk(tagId);
-
-        if (collection && tag) {
-            await collection.addTag(tag);
-            res.status(200).json({ message: 'Tag added to collection', tag });
-        } else {
-            res.status(404).json({ error: 'Collection or Tag not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 app.get('/tags', async (req, res) => {
     try {
         const tags = await Tag.findAll();
@@ -77,6 +59,5 @@ app.get('/tags', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 module.exports = app;

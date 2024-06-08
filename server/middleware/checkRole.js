@@ -1,8 +1,14 @@
 const { WorkspaceUser } = require('../models');
 
 const checkRole = async (req, res, next) => {
-    const workspaceId = req.body.workspaceId; 
+    const workspaceId = req.body.workspaceId;
+    console.log(`workspce id : ${workspaceId}`);
     const userId = req.user.id;
+    console.log(`userId id : ${userId}`);
+
+    if (!workspaceId) {
+        return res.status(400).json({ message: 'Missing workspaceId in request body' });
+    }
 
     try {
         const workspaceUser = await WorkspaceUser.findOne({
