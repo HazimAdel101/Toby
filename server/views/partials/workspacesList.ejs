@@ -14,6 +14,8 @@
         <h2 class="text-xl font-bold">
             <%= workspace.name %>
         </h2>
+        <% if (workspace.userRole === 'admin') { %>
+
         <button
             onclick="populateWorkspaceCollectionForm('<%= workspace.id %>', '<%= workspace.name %>', '<%= workspace.description %>')"
             data-modal-target="create-workspace-collection-modal" data-modal-toggle="create-workspace-collection-modal"
@@ -22,6 +24,7 @@
             <img src="/images/new-collection.svg" alt="collection" class="">
             <span>New Collection</span>
         </button>
+
         <button
             onclick="populateUpdateWorkspaceForm('<%= workspace.id %>', '<%= workspace.name %>', '<%= workspace.description %>')"
             data-modal-target="update-workspace-modal" data-modal-toggle="update-workspace-modal"
@@ -34,8 +37,11 @@
                 class="text-white bg-red-500 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2" type="button">
                 <img src="/images/delete.svg" alt="delete">
             </button>
+            <% } %>
 
         </button>
+
+        <% if (workspace.userRole === 'admin') { %>
 
         <form class="flex" action="/workspaces/create/collaborator" method="POST">
             <input type="hidden" name="workspaceId" value="<%= workspace.id %>" />
@@ -50,6 +56,8 @@
             </select>
             <button type="submit">Add</button>
         </form>
+        <% } %>
+
 
     </div>
     <% workspace.collections.forEach((collection, index)=> { %>
